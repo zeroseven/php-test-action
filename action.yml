@@ -1,0 +1,169 @@
+name: 'PHP Test Action'
+description: 'Run PHPUnit or Pest tests with coverage reporting for PHP projects'
+author: 'zeroseven'
+branding:
+  icon: 'check-circle'
+  color: 'purple'
+
+inputs:
+  # Test Configuration
+  test-type:
+    description: 'Type of tests to run: unit, functional, or all'
+    required: false
+    default: 'all'
+
+  test-framework:
+    description: 'Testing framework: auto, phpunit, or pest'
+    required: false
+    default: 'auto'
+
+  test-path:
+    description: 'Path to test directory or specific test file'
+    required: false
+    default: 'tests'
+
+  phpunit-config:
+    description: 'Path to PHPUnit configuration file'
+    required: false
+    default: 'phpunit.xml.dist'
+
+  composer-args:
+    description: 'Additional arguments for composer install'
+    required: false
+    default: '--prefer-dist --no-progress'
+
+  # Coverage Configuration
+  coverage-enabled:
+    description: 'Enable code coverage reporting'
+    required: false
+    default: 'true'
+
+  coverage-format:
+    description: 'Coverage format: clover, html, or both'
+    required: false
+    default: 'clover'
+
+  coverage-output:
+    description: 'Directory for coverage output'
+    required: false
+    default: '.coverage'
+
+  coverage-threshold:
+    description: 'Minimum coverage percentage required (0-100)'
+    required: false
+    default: '0'
+
+  coverage-comment:
+    description: 'Post coverage summary as PR comment'
+    required: false
+    default: 'true'
+
+  codecov-upload:
+    description: 'Upload coverage to Codecov'
+    required: false
+    default: 'false'
+
+  codecov-token:
+    description: 'Codecov token for private repositories'
+    required: false
+    default: ''
+
+  # Database Configuration
+  database-type:
+    description: 'Database type: sqlite, mysql, or none'
+    required: false
+    default: 'sqlite'
+
+  database-host:
+    description: 'Database host (for MySQL)'
+    required: false
+    default: '127.0.0.1'
+
+  database-port:
+    description: 'Database port (for MySQL)'
+    required: false
+    default: '3306'
+
+  database-name:
+    description: 'Database name'
+    required: false
+    default: 'test_db'
+
+  database-user:
+    description: 'Database username (for MySQL)'
+    required: false
+    default: 'root'
+
+  database-password:
+    description: 'Database password (for MySQL)'
+    required: false
+    default: 'root'
+
+  # Additional Options
+  php-extensions:
+    description: 'PHP extensions to check (comma-separated)'
+    required: false
+    default: 'mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, json'
+
+  fail-on-incomplete:
+    description: 'Fail if there are incomplete tests'
+    required: false
+    default: 'false'
+
+  fail-on-risky:
+    description: 'Fail if there are risky tests'
+    required: false
+    default: 'false'
+
+  fail-on-skipped:
+    description: 'Fail if there are skipped tests'
+    required: false
+    default: 'false'
+
+  verbose:
+    description: 'Enable verbose output'
+    required: false
+    default: 'false'
+
+  working-directory:
+    description: 'Working directory for running tests'
+    required: false
+    default: '.'
+
+outputs:
+  test-result:
+    description: 'Overall test result: success or failure'
+
+  tests-total:
+    description: 'Total number of tests run'
+
+  tests-passed:
+    description: 'Number of tests passed'
+
+  tests-failed:
+    description: 'Number of tests failed'
+
+  tests-skipped:
+    description: 'Number of tests skipped'
+
+  tests-incomplete:
+    description: 'Number of incomplete tests'
+
+  coverage-percentage:
+    description: 'Overall code coverage percentage'
+
+  coverage-lines:
+    description: 'Line coverage percentage'
+
+  coverage-methods:
+    description: 'Method coverage percentage'
+
+  coverage-classes:
+    description: 'Class coverage percentage'
+
+  coverage-report-path:
+    description: 'Path to coverage report'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
