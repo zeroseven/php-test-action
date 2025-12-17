@@ -1,6 +1,6 @@
 {
   "name": "php-test-action",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "GitHub Action for running PHP tests with PHPUnit or Pest",
   "main": "dist/index.js",
   "scripts": {

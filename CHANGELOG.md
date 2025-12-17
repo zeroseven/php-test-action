@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/zeroseven/php-test-action/compare/v1.0.0...v1.1.0) (2025-12-17)
+
+
+### Features
+
+* make release workflow depend on CI success ([315a92a](https://github.com/zeroseven/php-test-action/commit/315a92adc026f9c7c9996ccbcdff57c213b60a8e))
+
 # 1.0.0 (2025-12-17)
 
 
