@@ -16,8 +16,8 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Test coverage
-coverage/
+# Test coverage output (root level only, not src/coverage source code)
+/coverage/
 *.lcov
 
 # Logs
