@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/zeroseven/php-test-action/compare/v1.1.0...v1.2.0) (2025-12-17)
+
+
+### Features
+
+* add automatic Composer dependency caching ([fcac93d](https://github.com/zeroseven/php-test-action/commit/fcac93db467acd3ca118c244a2c3a991f68c385d))
+
 # [1.1.0](https://github.com/zeroseven/php-test-action/compare/v1.0.0...v1.1.0) (2025-12-17)
 
 
