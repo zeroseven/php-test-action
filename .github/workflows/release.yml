@@ -1,7 +1,9 @@
 name: Release
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -9,7 +11,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: write
       issues: write
