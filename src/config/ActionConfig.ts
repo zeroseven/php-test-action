@@ -11,6 +11,12 @@ export class ActionConfig {
     const composerArgs = this.getInput('composer-args');
     const workingDirectory = this.getInput('working-directory');
 
+    // Cache configuration
+    const cacheEnabled = this.getBooleanInput('cache-enabled');
+    const cacheKeyPrefix = this.getInput('cache-key-prefix');
+    const cacheComposerCache = this.getBooleanInput('cache-composer-cache');
+    const cacheVendor = this.getBooleanInput('cache-vendor');
+
     // Coverage configuration
     const coverageEnabled = this.getBooleanInput('coverage-enabled');
     const coverageFormat = this.getInput('coverage-format') as 'clover' | 'html' | 'both';
@@ -49,6 +55,12 @@ export class ActionConfig {
       phpunitConfig: resolvePath(resolvedWorkingDir, phpunitConfig),
       composerArgs,
       workingDirectory: resolvedWorkingDir,
+      cache: {
+        enabled: cacheEnabled,
+        keyPrefix: cacheKeyPrefix,
+        composerCache: cacheComposerCache,
+        vendor: cacheVendor,
+      },
       coverage: {
         enabled: coverageEnabled,
         format: coverageFormat,

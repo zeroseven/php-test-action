@@ -7,6 +7,14 @@ export interface ActionInputs {
   composerArgs: string;
   workingDirectory: string;
 
+  // Cache Configuration
+  cache: {
+    enabled: boolean;
+    keyPrefix: string;
+    composerCache: boolean;
+    vendor: boolean;
+  };
+
   // Coverage Configuration
   coverage: {
     enabled: boolean;

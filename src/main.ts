@@ -12,6 +12,7 @@ import { CoverageParser } from './coverage/CoverageParser';
 import { CoverageThreshold } from './coverage/CoverageThreshold';
 import { CoverageReporter } from './coverage/CoverageReporter';
 import { GitHubReporter } from './reporters/GitHubReporter';
+import { CacheManager } from './cache/CacheManager';
 import { Logger } from './utils/logger';
 import { TestFramework } from './types/ActionInputs';
 import { TestStatus } from './types/TestResult';
@@ -29,6 +30,10 @@ async function run(): Promise<void> {
 
     logger.info('PHP Test Action started');
     logger.debug(`Working directory: ${inputs.workingDirectory}`);
+
+    // Setup cache
+    const cacheManager = new CacheManager(inputs.cache, inputs.workingDirectory, logger);
+    await cacheManager.restore();
 
     // Analyze composer.json
     const composer = new ComposerAnalyzer();
@@ -124,6 +129,12 @@ async function run(): Promise<void> {
       core.setFailed(message);
     } else {
       logger.info(`All tests passed! (${testResult.passed}/${testResult.total})`);
+    }
+
+    // Save cache after successful test run
+    if (logger) {
+      const cacheManager = new CacheManager(inputs.cache, inputs.workingDirectory, logger);
+      await cacheManager.save();
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

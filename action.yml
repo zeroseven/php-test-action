@@ -32,6 +32,27 @@ inputs:
     required: false
     default: '--prefer-dist --no-progress'
 
+  # Cache Configuration
+  cache-enabled:
+    description: 'Enable automatic caching of Composer dependencies'
+    required: false
+    default: 'true'
+
+  cache-key-prefix:
+    description: 'Prefix for cache keys'
+    required: false
+    default: 'php-test-action'
+
+  cache-composer-cache:
+    description: 'Cache Composer cache directory'
+    required: false
+    default: 'true'
+
+  cache-vendor:
+    description: 'Cache vendor directory'
+    required: false
+    default: 'false'
+
   # Coverage Configuration
   coverage-enabled:
     description: 'Enable code coverage reporting'
